@@ -3,10 +3,12 @@
     <entity name="SimpleTasks" representedClassName="SimpleTasks" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="isComplete" optional="YES" attributeType="Boolean" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="isFavorites" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isLong" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="task" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="SimpleTasks" positionX="-63" positionY="-18" width="128" height="89"/>
+        <element name="SimpleTasks" positionX="-63" positionY="-18" width="128" height="119"/>
     </elements>
 </model>

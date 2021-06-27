@@ -17,9 +17,9 @@ struct SimpleTasksView: View {
         animation: .default)
     private var items: FetchedResults<SimpleTasks>
     
-    @State private var isPresentation: Bool = false
     @State private var title: String = ""
     @State private var tasks: String = ""
+    @State private var isPresentation: Bool = false
 
     var body: some View {
         List {
