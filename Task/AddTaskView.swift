@@ -9,31 +9,39 @@ import SwiftUI
 
 @available(iOS 15.0, *)
 struct AddTaskView: View {
-    @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.presentationMode) private var presentation
+    @Environment(\.managedObjectContext) private var viewContext
     
     @ObservedObject private var viewModel: Self.ViewModel = .init()
     
     @Binding var title: String
     @Binding var tasks: String
     
-    @State private var tags: [Tags] = []
+    @State private var tags: [Tag] = [
+        Tag(title: "Long", style: .long, color: .blue),
+        Tag(title: "Favorites", style: .favorite, color: .orange)
+    ]
+    @State private var isFavorites: Bool = false
+    @State private var isLong: Bool = false
     
     var body: some View {
         NavigationView {
             Form {
                 Section("Title") {
                     TextField("", text: $title)
-                }.font(.headline)
+                }.font(.title3)
                 
                 Section("Tasks") {
                     TextEditor(text: $tasks)
-                }.font(.headline)
+                }.font(.title3)
                 
                 Section("Tags") {
                     ScrollView(.horizontal) {
-                        Text("Long")
-                        Text("Favorites")
+                        HStack {
+                            ForEach(tags, id: \.self) { tag in
+                                buttonItem(tag: tag)
+                            }
+                        }
                     }
                 }
             }
@@ -45,8 +53,38 @@ struct AddTaskView: View {
         }
     }
     
+    private func buttonItem(tag: Tag) -> some View {
+        VStack {
+            if case .long = tag.style {
+                EmptyButtonView(title: tag.title, isSelect: isLong, color: tag.color) {
+                    isLong.toggle()
+                }
+            }
+            else if case .favorite = tag.style {
+                EmptyButtonView(title: tag.title, isSelect: isFavorites, color: tag.color) {
+                    isFavorites.toggle()
+                }
+            }
+        }
+    }
+    
+    private struct EmptyButtonView: View {
+        var title: String
+        var isSelect: Bool
+        var color: Color
+        var action: () -> Void
+        
+        var body: some View {
+            Button(action: action) {
+                Text(title)
+            }.buttonStyle(EmptyButton(color: color, isSelect: isSelect))
+        }
+    }
+    
     private var leadingItem: some View {
         Button(action: {
+            tasks = ""
+            title = ""
             presentation.wrappedValue.dismiss()
         }){
             Text("Back")
@@ -65,6 +103,8 @@ struct AddTaskView: View {
                     task.date = Date()
                     task.title = title
                     task.task = tasks
+                    task.isLong = isLong
+                    task.isFavorites = isFavorites
                     
                     tasks = ""
                     title = ""
@@ -83,9 +123,9 @@ struct AddTaskView: View {
         }
     }
     
-    struct Tags: Hashable {
+    private struct Tag: Hashable {
         var title: String
-//        var style:
-//        var
+        var style: ButtonsStyle
+        var color: Color
     }
 }

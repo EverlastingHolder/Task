@@ -25,8 +25,14 @@ struct SimpleTasksView: View {
         List {
             ForEach(items) { item in
                 VStack(alignment: .leading) {
-                    Text(item.title ?? "")
-                        .font(.headline)
+                    HStack {
+                        Text(item.title ?? "")
+                            .font(.headline)
+                        
+//                        Spacer()
+                        
+//                        Text(item.task ?? "")
+                    }
                     Text(item.task ?? "" )
                 }
             }
