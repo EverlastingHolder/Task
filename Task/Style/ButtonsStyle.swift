@@ -6,23 +6,10 @@
 //
 
 import Foundation
+import CoreData
 
-enum ButtonsStyle {
-    case long, favorite
-    
-    var isTag: Bool {
-        switch self {
-            case .favorite: return true
-            case .long: return true
-        }
-    }
-}
-extension ButtonsStyle: Equatable {
-    static func ==(lhs: ButtonsStyle, rhs: ButtonsStyle) -> Bool {
-        switch (lhs, rhs) {
-            case (.long, .long): return true
-            case (.favorite, .favorite): return true
-            default: return false
-        }
-    }
+@objc enum ButtonsStyle: Int {
+    case long = 0
+    case favorite = 1
+    case base = 2
 }

@@ -14,26 +14,31 @@ struct AddTaskView: View {
     
     @ObservedObject private var viewModel: Self.ViewModel = .init()
     
-    @Binding var title: String
-    @Binding var tasks: String
+    @State var title: String = ""
+    @State var tasks: String = ""
     
-    @State private var tags: [Tag] = [
-        Tag(title: "Long", style: .long, color: .blue),
-        Tag(title: "Favorites", style: .favorite, color: .orange)
+    @State private var tags: [TagItemCurrent] = [
+        TagItemCurrent(title: "Long", style: .long, color: .blue),
+        TagItemCurrent(title: "Favorites", style: .favorite, color: .orange)
     ]
     @State private var isFavorites: Bool = false
     @State private var isLong: Bool = false
+    
+    private let transform: Transformer = Transformer()
+//    private let favorites: TagItem = TagItem(title: "", style: .base, color: .clear)
+//    private let long: TagItem = TagItem(title: "", style: .base, color: .clear)
+    @State private var arrayTag: [TagItem] = []
     
     var body: some View {
         NavigationView {
             Form {
                 Section("Title") {
                     TextField("", text: $title)
-                }.font(.title3)
+                }.font(.callout)
                 
                 Section("Tasks") {
                     TextEditor(text: $tasks)
-                }.font(.title3)
+                }.font(.callout)
                 
                 Section("Tags") {
                     ScrollView(.horizontal) {
@@ -43,7 +48,7 @@ struct AddTaskView: View {
                             }
                         }
                     }
-                }
+                }.font(.callout)
             }
             .navigationTitle(Text("New Task"))
             .navigationBarItems(leading: leadingItem, trailing: trailingItem)
@@ -53,22 +58,28 @@ struct AddTaskView: View {
         }
     }
     
-    private func buttonItem(tag: Tag) -> some View {
+    private func buttonItem(tag: TagItemCurrent) -> some View {
         VStack {
             if case .long = tag.style {
-                EmptyButtonView(title: tag.title, isSelect: isLong, color: tag.color) {
+                TransparentButtonView(title: tag.title, isSelect: isLong, color: tag.color) {
                     isLong.toggle()
                 }
             }
             else if case .favorite = tag.style {
-                EmptyButtonView(title: tag.title, isSelect: isFavorites, color: tag.color) {
+                TransparentButtonView(title: tag.title, isSelect: isFavorites, color: tag.color) {
                     isFavorites.toggle()
                 }
             }
         }
     }
     
-    private struct EmptyButtonView: View {
+    private struct TagItemCurrent: Hashable {
+        var title: String
+        var style: ButtonsStyle
+        var color: Color
+    }
+    
+    private struct TransparentButtonView: View {
         var title: String
         var isSelect: Bool
         var color: Color
@@ -77,7 +88,7 @@ struct AddTaskView: View {
         var body: some View {
             Button(action: action) {
                 Text(title)
-            }.buttonStyle(EmptyButton(color: color, isSelect: isSelect))
+            }.buttonStyle(TransparentButton(color: color, isSelect: isSelect))
         }
     }
     
@@ -103,9 +114,17 @@ struct AddTaskView: View {
                     task.date = Date()
                     task.title = title
                     task.task = tasks
-                    task.isLong = isLong
-                    task.isFavorites = isFavorites
                     
+                    if isLong {
+                        arrayTag.append(TagItem(title: "Long", style: .long, color: .blue))
+                    }
+                    
+                    if isFavorites {
+                        arrayTag.append(TagItem(title: "Favorites", style: .favorite, color: .orange))
+                    }
+                    
+                    
+                    task.tags = arrayTag
                     tasks = ""
                     title = ""
                     
@@ -121,11 +140,5 @@ struct AddTaskView: View {
         }) {
             Text("Done")
         }
-    }
-    
-    private struct Tag: Hashable {
-        var title: String
-        var style: ButtonsStyle
-        var color: Color
     }
 }

@@ -16,6 +16,9 @@ struct TaskApp: App {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .task {
+                    Transformer.register()
+                }
         }
     }
 }

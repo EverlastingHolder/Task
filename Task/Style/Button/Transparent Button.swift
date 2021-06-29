@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct EmptyButton: ButtonStyle {
+struct TransparentButton: ButtonStyle {
     let color: Color
     let isSelect: Bool
     

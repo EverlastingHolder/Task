@@ -11,16 +11,14 @@ import CoreData
 @available(iOS 15.0, *)
 struct SimpleTasksView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
+    
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \SimpleTasks.date, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \SimpleTasks.date, ascending: false)],
         animation: .default)
     private var items: FetchedResults<SimpleTasks>
     
-    @State private var title: String = ""
-    @State private var tasks: String = ""
     @State private var isPresentation: Bool = false
-
+    
     var body: some View {
         List {
             ForEach(items) { item in
@@ -29,9 +27,16 @@ struct SimpleTasksView: View {
                         Text(item.title ?? "")
                             .font(.headline)
                         
-//                        Spacer()
-                        
-//                        Text(item.task ?? "")
+                        HStack {
+                            ForEach(item.tags ?? [], id: \.self) { tag in
+                                Text(tag.title ?? "")
+                                    .padding(.horizontal)
+                                    .padding(.vertical, 4)
+                                    .background(tag.color)
+                                    .opacity(1)
+                                    .cornerRadius(12)
+                            }
+                        }
                     }
                     Text(item.task ?? "" )
                 }
@@ -39,11 +44,12 @@ struct SimpleTasksView: View {
             .onDelete(perform: deleteItems)
         }
         .navigationBarItems(trailing: trailingItem)
-        .sheet(isPresented: $isPresentation) {
-            AddTaskView(title: $title, tasks: $tasks)
+        .navigationTitle(Text("All tasks"))
+        .fullScreenCover(isPresented: $isPresentation) {
+            AddTaskView()
         }
     }
-
+    
     private var trailingItem: some View {
         HStack {
             EditButton()
@@ -54,11 +60,11 @@ struct SimpleTasksView: View {
             }
         }
     }
-
+    
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             offsets.map { items[$0] }.forEach(viewContext.delete)
-
+            
             do {
                 try viewContext.save()
             } catch {

@@ -15,9 +15,12 @@
 		095C2382268624DA00AFEDD2 /* Task.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 095C2380268624DA00AFEDD2 /* Task.xcdatamodeld */; };
 		095C23892686270C00AFEDD2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095C23882686270C00AFEDD2 /* ContentView.swift */; };
 		095C238B2686284C00AFEDD2 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095C238A2686284C00AFEDD2 /* AddTaskView.swift */; };
+		0964591C2689B51F00298764 /* TagItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0964591B2689B51F00298764 /* TagItem.swift */; };
 		09664CC826884D09008558F8 /* AddTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09664CC726884D09008558F8 /* AddTaskViewModel.swift */; };
-		09664CD12688A1E7008558F8 /* EmptyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09664CD02688A1E7008558F8 /* EmptyButton.swift */; };
+		09664CD12688A1E7008558F8 /* Transparent Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09664CD02688A1E7008558F8 /* Transparent Button.swift */; };
 		09664CD32688A2D9008558F8 /* ButtonsStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09664CD22688A2D9008558F8 /* ButtonsStyle.swift */; };
+		0977A42C2689EFC500CC9A68 /* SimpleTasks+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0977A42A2689EFC500CC9A68 /* SimpleTasks+CoreDataClass.swift */; };
+		0977A42D2689EFC500CC9A68 /* SimpleTasks+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0977A42B2689EFC500CC9A68 /* SimpleTasks+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,9 +33,12 @@
 		095C2381268624DA00AFEDD2 /* Task.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Task.xcdatamodel; sourceTree = "<group>"; };
 		095C23882686270C00AFEDD2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		095C238A2686284C00AFEDD2 /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
+		0964591B2689B51F00298764 /* TagItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagItem.swift; sourceTree = "<group>"; };
 		09664CC726884D09008558F8 /* AddTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewModel.swift; sourceTree = "<group>"; };
-		09664CD02688A1E7008558F8 /* EmptyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyButton.swift; sourceTree = "<group>"; };
+		09664CD02688A1E7008558F8 /* Transparent Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transparent Button.swift"; sourceTree = "<group>"; };
 		09664CD22688A2D9008558F8 /* ButtonsStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsStyle.swift; sourceTree = "<group>"; };
+		0977A42A2689EFC500CC9A68 /* SimpleTasks+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleTasks+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0977A42B2689EFC500CC9A68 /* SimpleTasks+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleTasks+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +55,8 @@
 		095C2369268624DA00AFEDD2 = {
 			isa = PBXGroup;
 			children = (
+				0977A42A2689EFC500CC9A68 /* SimpleTasks+CoreDataClass.swift */,
+				0977A42B2689EFC500CC9A68 /* SimpleTasks+CoreDataProperties.swift */,
 				095C2374268624DA00AFEDD2 /* Task */,
 				095C2373268624DA00AFEDD2 /* Products */,
 			);
@@ -65,6 +73,7 @@
 		095C2374268624DA00AFEDD2 /* Task */ = {
 			isa = PBXGroup;
 			children = (
+				0964591A2689B51100298764 /* Component */,
 				09664CCD2688A061008558F8 /* Extension */,
 				09664CC926889E05008558F8 /* Style */,
 				095C2375268624DA00AFEDD2 /* TaskApp.swift */,
@@ -88,6 +97,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		0964591A2689B51100298764 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				0964591B2689B51F00298764 /* TagItem.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		09664CC926889E05008558F8 /* Style */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,7 +117,7 @@
 		09664CCA26889E89008558F8 /* Button */ = {
 			isa = PBXGroup;
 			children = (
-				09664CD02688A1E7008558F8 /* EmptyButton.swift */,
+				09664CD02688A1E7008558F8 /* Transparent Button.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -184,13 +201,16 @@
 			files = (
 				095C2382268624DA00AFEDD2 /* Task.xcdatamodeld in Sources */,
 				095C23892686270C00AFEDD2 /* ContentView.swift in Sources */,
+				0977A42C2689EFC500CC9A68 /* SimpleTasks+CoreDataClass.swift in Sources */,
+				0964591C2689B51F00298764 /* TagItem.swift in Sources */,
 				09664CC826884D09008558F8 /* AddTaskViewModel.swift in Sources */,
 				095C237F268624DA00AFEDD2 /* Persistence.swift in Sources */,
 				09664CD32688A2D9008558F8 /* ButtonsStyle.swift in Sources */,
 				095C238B2686284C00AFEDD2 /* AddTaskView.swift in Sources */,
+				0977A42D2689EFC500CC9A68 /* SimpleTasks+CoreDataProperties.swift in Sources */,
 				095C2378268624DA00AFEDD2 /* SimpleTasksView.swift in Sources */,
 				095C2376268624DA00AFEDD2 /* TaskApp.swift in Sources */,
-				09664CD12688A1E7008558F8 /* EmptyButton.swift in Sources */,
+				09664CD12688A1E7008558F8 /* Transparent Button.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
