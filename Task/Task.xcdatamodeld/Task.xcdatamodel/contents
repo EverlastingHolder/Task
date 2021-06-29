@@ -3,7 +3,7 @@
     <entity name="SimpleTasks" representedClassName=".SimpleTasks" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="isComplete" optional="YES" attributeType="Boolean" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="tags" optional="YES" attributeType="Transformable" valueTransformerName="Transformer" customClassName="NSArray"/>
+        <attribute name="tags" optional="YES" attributeType="Transformable" valueTransformerName=""/>
         <attribute name="task" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>

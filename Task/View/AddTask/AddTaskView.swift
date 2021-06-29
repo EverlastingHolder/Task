@@ -12,14 +12,17 @@ struct AddTaskView: View {
     @Environment(\.presentationMode) private var presentation
     @Environment(\.managedObjectContext) private var viewContext
     
+    @EnvironmentObject
+    private var appViewModel: TaskApp.ViewModel
+    
     @ObservedObject private var viewModel: Self.ViewModel = .init()
     
     @State var title: String = ""
     @State var tasks: String = ""
     
-    @State private var tags: [TagItemCurrent] = [
-        TagItemCurrent(title: "Long", style: .long, color: .blue),
-        TagItemCurrent(title: "Favorites", style: .favorite, color: .orange)
+    private let tags: [TagItem] = [
+        TagItem(title: "Long", style: .long, color: .blue),
+        TagItem(title: "Favorites", style: .favorite, color: .orange)
     ]
     
     @State private var arrayTag: [TagItem] = []
@@ -46,7 +49,7 @@ struct AddTaskView: View {
                 ) {
                     ScrollView(.horizontal) {
                         HStack {
-                            ForEach(tags, id: \.self) { tag in
+                            ForEach(tags, id: \.hashValue) { tag in
                                 buttonItem(tag: tag)
                             }
                         }
@@ -61,25 +64,19 @@ struct AddTaskView: View {
         }
     }
     
-    private func buttonItem(tag: TagItemCurrent) -> some View {
+    private func buttonItem(tag: TagItem) -> some View {
         VStack {
             if case .long = tag.style {
-                TransparentButtonView(title: tag.title, isSelect: isLong, color: tag.color) {
+                TransparentButtonView(title: tag.title ?? "", isSelect: isLong, color: tag.color ?? .clear) {
                     isLong.toggle()
                 }
             }
             else if case .favorite = tag.style {
-                TransparentButtonView(title: tag.title, isSelect: isFavorites, color: tag.color) {
+                TransparentButtonView(title: tag.title ?? "", isSelect: isFavorites, color: tag.color ?? .clear) {
                     isFavorites.toggle()
                 }
             }
         }
-    }
-    
-    private struct TagItemCurrent: Hashable {
-        var title: String
-        var style: TagsStyle
-        var color: Color
     }
     
     private struct TransparentButtonView: View {
@@ -127,6 +124,7 @@ struct AddTaskView: View {
                     }
                     
                     task.tags = arrayTag
+                    appViewModel.countCurrentTask += 1
                     
                     tasks = ""
                     title = ""

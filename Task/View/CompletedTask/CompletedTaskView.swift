@@ -1,31 +1,36 @@
 //
-//  ContentView.swift
+//  CompleteTaskView.swift
 //  Task
 //
-//  Created by Роман Мошковцев on 25.06.2021.
+//  Created by Роман Мошковцев on 29.06.2021.
 //
-
 import SwiftUI
 import CoreData
 
-struct SimpleTasksView: View {
-    @Environment(\.managedObjectContext) private var viewContext
+struct CompletedTasksView: View {
+    @EnvironmentObject
+    private var viewModel: TaskApp.ViewModel
     
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \SimpleTasks.date, ascending: false)],
+        predicate: NSPredicate(format: "isComplete == %@", NSNumber(booleanLiteral: true)),
         animation: .default)
     private var items: FetchedResults<SimpleTasks>
     
-    @State private var isPresentation: Bool = false
-    
     var body: some View {
         List {
+            Section{
+                HStack {
+                    Text("Total tasks")
+                    Spacer()
+                    Text(viewModel.countCompletedTask.description)
+                }
+            }
             ForEach(items) { item in
                 VStack(alignment: .leading) {
                     HStack {
                         Text(item.title ?? "")
                             .font(.headline)
-                        
                         HStack {
                             ForEach(item.tags ?? [], id: \.self) { tag in
                                 Text(tag.title ?? "")
@@ -40,35 +45,7 @@ struct SimpleTasksView: View {
                     Text(item.task ?? "" )
                 }
             }
-            .onDelete(perform: deleteItems)
-        }
-        .navigationBarItems(trailing: trailingItem)
-        .navigationTitle(Text("All tasks"))
-        .fullScreenCover(isPresented: $isPresentation) {
-            AddTaskView()
-        }
-    }
-    
-    private var trailingItem: some View {
-        HStack {
-            EditButton()
-            Button(action: {
-                isPresentation = true
-            }) {
-                Label("Add Item", systemImage: "plus")
-            }
-        }
-    }
-    
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-            
-            do {
-                try viewContext.save()
-            } catch {
-                print("Error delete Task: \(error)")
-            }
-        }
+        }.navigationBarTitle(Text("Completed tasks"), displayMode: .inline)
     }
 }
+
