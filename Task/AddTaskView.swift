@@ -75,7 +75,7 @@ struct AddTaskView: View {
     
     private struct TagItemCurrent: Hashable {
         var title: String
-        var style: ButtonsStyle
+        var style: TagsStyle
         var color: Color
     }
     

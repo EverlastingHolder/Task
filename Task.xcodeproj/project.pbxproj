@@ -18,7 +18,7 @@
 		0964591C2689B51F00298764 /* TagItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0964591B2689B51F00298764 /* TagItem.swift */; };
 		09664CC826884D09008558F8 /* AddTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09664CC726884D09008558F8 /* AddTaskViewModel.swift */; };
 		09664CD12688A1E7008558F8 /* Transparent Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09664CD02688A1E7008558F8 /* Transparent Button.swift */; };
-		09664CD32688A2D9008558F8 /* ButtonsStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09664CD22688A2D9008558F8 /* ButtonsStyle.swift */; };
+		09664CD32688A2D9008558F8 /* TagsStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09664CD22688A2D9008558F8 /* TagsStyle.swift */; };
 		0977A42C2689EFC500CC9A68 /* SimpleTasks+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0977A42A2689EFC500CC9A68 /* SimpleTasks+CoreDataClass.swift */; };
 		0977A42D2689EFC500CC9A68 /* SimpleTasks+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0977A42B2689EFC500CC9A68 /* SimpleTasks+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
@@ -36,7 +36,7 @@
 		0964591B2689B51F00298764 /* TagItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagItem.swift; sourceTree = "<group>"; };
 		09664CC726884D09008558F8 /* AddTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewModel.swift; sourceTree = "<group>"; };
 		09664CD02688A1E7008558F8 /* Transparent Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transparent Button.swift"; sourceTree = "<group>"; };
-		09664CD22688A2D9008558F8 /* ButtonsStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsStyle.swift; sourceTree = "<group>"; };
+		09664CD22688A2D9008558F8 /* TagsStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsStyle.swift; sourceTree = "<group>"; };
 		0977A42A2689EFC500CC9A68 /* SimpleTasks+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleTasks+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0977A42B2689EFC500CC9A68 /* SimpleTasks+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleTasks+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,7 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				09664CCA26889E89008558F8 /* Button */,
-				09664CD22688A2D9008558F8 /* ButtonsStyle.swift */,
+				09664CD22688A2D9008558F8 /* TagsStyle.swift */,
 			);
 			path = Style;
 			sourceTree = "<group>";
@@ -205,7 +205,7 @@
 				0964591C2689B51F00298764 /* TagItem.swift in Sources */,
 				09664CC826884D09008558F8 /* AddTaskViewModel.swift in Sources */,
 				095C237F268624DA00AFEDD2 /* Persistence.swift in Sources */,
-				09664CD32688A2D9008558F8 /* ButtonsStyle.swift in Sources */,
+				09664CD32688A2D9008558F8 /* TagsStyle.swift in Sources */,
 				095C238B2686284C00AFEDD2 /* AddTaskView.swift in Sources */,
 				0977A42D2689EFC500CC9A68 /* SimpleTasks+CoreDataProperties.swift in Sources */,
 				095C2378268624DA00AFEDD2 /* SimpleTasksView.swift in Sources */,

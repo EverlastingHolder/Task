@@ -12,12 +12,12 @@ public class TagItem: NSObject, NSSecureCoding{
     public static var supportsSecureCoding: Bool = true
     
     var title: String?
-    var style: ButtonsStyle?
+    var style: TagsStyle?
     var color: Color?
     
     init(
         title: String,
-        style: ButtonsStyle,
+        style: TagsStyle,
         color: Color
     ){
         self.title = title
@@ -33,7 +33,7 @@ public class TagItem: NSObject, NSSecureCoding{
     
     public required init?(coder: NSCoder) {
         title = coder.decodeObject(forKey: "title") as? String ?? ""
-        style = ButtonsStyle(rawValue: (coder.decodeObject(forKey: "style") as! Int)) ?? .base
+        style = TagsStyle(rawValue: (coder.decodeObject(forKey: "style") as! Int)) ?? .base
         if #available(iOS 15.0, *) {
             color = Color(uiColor: coder.decodeObject(forKey: "color") as! UIColor)
         }

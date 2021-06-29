@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-@objc enum ButtonsStyle: Int {
+@objc enum TagsStyle: Int {
     case long = 0
     case favorite = 1
     case base = 2
