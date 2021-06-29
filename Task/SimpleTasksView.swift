@@ -8,7 +8,6 @@
 import SwiftUI
 import CoreData
 
-@available(iOS 15.0, *)
 struct SimpleTasksView: View {
     @Environment(\.managedObjectContext) private var viewContext
     

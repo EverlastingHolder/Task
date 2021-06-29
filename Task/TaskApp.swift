@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@available(iOS 15.0, *)
 @main
 struct TaskApp: App {
     let persistenceController = PersistenceController.shared
@@ -16,9 +15,6 @@ struct TaskApp: App {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .task {
-                    Transformer.register()
-                }
         }
     }
 }

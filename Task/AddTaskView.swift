@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-@available(iOS 15.0, *)
+
 struct AddTaskView: View {
     @Environment(\.presentationMode) private var presentation
     @Environment(\.managedObjectContext) private var viewContext
@@ -21,26 +21,29 @@ struct AddTaskView: View {
         TagItemCurrent(title: "Long", style: .long, color: .blue),
         TagItemCurrent(title: "Favorites", style: .favorite, color: .orange)
     ]
+    
+    @State private var arrayTag: [TagItem] = []
     @State private var isFavorites: Bool = false
     @State private var isLong: Bool = false
-    
-    private let transform: Transformer = Transformer()
-//    private let favorites: TagItem = TagItem(title: "", style: .base, color: .clear)
-//    private let long: TagItem = TagItem(title: "", style: .base, color: .clear)
-    @State private var arrayTag: [TagItem] = []
     
     var body: some View {
         NavigationView {
             Form {
-                Section("Title") {
+                Section(
+                    header: Text("Title").font(.callout)
+                ) {
                     TextField("", text: $title)
                 }.font(.callout)
                 
-                Section("Tasks") {
+                Section(
+                    header: Text("Task").font(.callout)
+                ) {
                     TextEditor(text: $tasks)
                 }.font(.callout)
                 
-                Section("Tags") {
+                Section(
+                    header: Text("Tags").font(.callout)
+                ) {
                     ScrollView(.horizontal) {
                         HStack {
                             ForEach(tags, id: \.self) { tag in
@@ -48,7 +51,7 @@ struct AddTaskView: View {
                             }
                         }
                     }
-                }.font(.callout)
+                }
             }
             .navigationTitle(Text("New Task"))
             .navigationBarItems(leading: leadingItem, trailing: trailingItem)
@@ -123,8 +126,8 @@ struct AddTaskView: View {
                         arrayTag.append(TagItem(title: "Favorites", style: .favorite, color: .orange))
                     }
                     
-                    
                     task.tags = arrayTag
+                    
                     tasks = ""
                     title = ""
                     

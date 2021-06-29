@@ -7,7 +7,6 @@
 
 import Foundation
 
-@available(iOS 15.0, *)
 extension AddTaskView {
     class ViewModel: ObservableObject {
         @Published var isError: Bool = false
